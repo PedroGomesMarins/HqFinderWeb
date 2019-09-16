@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Views/Home/main.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <section>
+
+            @using (Html.BeginForm("Post", "Home"))
+            {
+                <label>Nome</label>
+                <input type="text" name="text_nome" value="" /><br />
+
+                <label>Volume</label>
+                <input type="text" name="text_volume" value="" />
+
+                <label>Editora</label>
+                <input type="text" name="text_editora" value="" />
+
+                <input type="submit" value="Pesquisar" />
+            }
+
+        </section>
+    </div>
+</body>
+</html>
