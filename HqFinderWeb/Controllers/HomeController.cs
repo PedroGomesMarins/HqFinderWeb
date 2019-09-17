@@ -16,7 +16,7 @@ namespace HqFinderWeb.Controllers
         }
 
         [HttpPost]
-        public void Post(string text_nome, string text_volume, string text_editora)
+        public ActionResult Post(string text_nome, string text_volume, string text_editora)
         {
             Quadrinho hq = new Quadrinho();
             hq.nome = text_nome;
@@ -29,12 +29,16 @@ namespace HqFinderWeb.Controllers
             List<Resultado> resultadoExcelsior = new List<Resultado>();
             navegaExcelsior(hq, resultadoExcelsior);
             resultados.AddRange(resultadoExcelsior);
-        }
 
+            ViewBag.Resultados = resultados;
+            return View("mostrarResultados");
+        }
+ 
         private static void navegaExcelsior(Quadrinho hq, List<Resultado> dadosExcelsior)
         {
             NavegaExcelsior excelsior = new NavegaExcelsior();
             dadosExcelsior = excelsior.NavegaPesquisa(hq, dadosExcelsior);
         }
+
     }
 }

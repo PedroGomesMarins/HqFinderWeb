@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Resultados";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>mostrarResultados</title>
+</head>
+<body>
+    <div>
+
+        <h2>Resultados</h2>
+            <ul>
+                @foreach (Resultado res in ViewBag.Resultados) { 
+
+                    <li>
+                        @res.preco
+                        <a>@res.link</a>
+                    </li>
+                }
+           </ul>
+
+    </div>
+</body>
+</html>
