@@ -31,7 +31,7 @@ namespace HqFinderWeb.Controllers
             resultados.AddRange(resultadoExcelsior);
 
             ViewBag.Resultados = resultados;
-            return View("mostrarResultados");
+            return View("resultados");
         }
  
         private static void navegaExcelsior(Quadrinho hq, List<Resultado> dadosExcelsior)

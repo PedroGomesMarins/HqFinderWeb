@@ -1,13 +1,13 @@
 ﻿
 @{
-
+    
 }
 
 <!DOCTYPE html>
 
 <html>
 <head>
-    <link rel="stylesheet" href="~/Views/Home/main.css" type="text/css" />
+    <link href="~/Content/Index.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
 </head>
@@ -17,7 +17,7 @@
 
             @using (Html.BeginForm("Post", "Home"))
             {
-                <label>Nome</label>
+                <label id="para1">Nome</label>
                 <input type="text" name="text_nome" value="" /><br />
 
                 <label>Volume</label>
