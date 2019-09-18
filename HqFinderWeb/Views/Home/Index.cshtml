@@ -18,13 +18,13 @@
             @using (Html.BeginForm("Post", "Home"))
             {
                 <label id="para1">Nome</label>
-                <input type="text" name="text_nome" value="" /><br />
+                <input type="text" name="text_nome" value="" required="" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Preencha com o nome do quadrinho.')"/><br />
 
                 <label>Volume</label>
                 <input type="text" name="text_volume" value="" />
 
                 <label>Editora</label>
-                <input type="text" name="text_editora" value="" />
+                <input type="text" name="text_editora" value="" required="" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Preencha com a editora do quadrinho.')"/>
 
                 <input type="submit" value="Pesquisar" />
             }
