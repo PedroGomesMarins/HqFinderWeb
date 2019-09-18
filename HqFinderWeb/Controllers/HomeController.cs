@@ -26,6 +26,11 @@ namespace HqFinderWeb.Controllers
             List<Resultado> resultados = new List<Resultado>();
 
             //Navega e extrai as informações e retorna uma lista de quadrinhos desejados.
+            List<Resultado> resultadoComix = new List<Resultado>();
+            navegaComix(hq, resultadoComix);
+            resultados.AddRange(resultadoComix);
+
+            //Navega e extrai as informações e retorna uma lista de quadrinhos desejados.
             List<Resultado> resultadoExcelsior = new List<Resultado>();
             navegaExcelsior(hq, resultadoExcelsior);
             resultados.AddRange(resultadoExcelsior);
@@ -40,5 +45,10 @@ namespace HqFinderWeb.Controllers
             dadosExcelsior = excelsior.NavegaPesquisa(hq, dadosExcelsior);
         }
 
+        private static void navegaComix(Quadrinho hq, List<Resultado> dadosComix)
+        {
+            NavegaComix comix = new NavegaComix();
+            dadosComix = comix.NavegaPesquisa(hq, dadosComix);
+        }
     }
 }

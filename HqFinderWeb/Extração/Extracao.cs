@@ -82,7 +82,9 @@ namespace HqFinderWeb.Extração
 
                 var link = nodeLink.Attributes.First().Value;
 
-                navegaResultado.NavegaResultado(link, driver, resultado, url);
+                var linkResultado = montaLinkResultado(url, link);
+
+                navegaResultado.NavegaResultado(linkResultado, driver, resultado);
 
                 var doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(driver.PageSource);
@@ -101,6 +103,11 @@ namespace HqFinderWeb.Extração
             }
 
             return resultados;
+        }
+
+        public virtual string montaLinkResultado(string url, string link)
+        {
+            return String.Format(url + link);
         }
 
         private bool verificarDisponibilidade(string xpathNodeDisponibilidade, HtmlDocument doc)
