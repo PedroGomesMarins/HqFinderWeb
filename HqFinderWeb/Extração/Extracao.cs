@@ -52,10 +52,20 @@ namespace HqFinderWeb.Extração
             Match matchNome = Regex.Match(input, patternNome);
             Match matchVolume = Regex.Match(input, patternVolume);
 
-            if (matchNome.Success && matchVolume.Success)
-                return true;
+            if (hq.volume.Length > 0)
+            {
+                if (matchNome.Success && matchVolume.Success)
+                    return true;
+                else
+                    return false;
+            }
             else
-                return false;
+            {
+                if (matchNome.Success)
+                    return true;
+                else
+                    return false;
+            }
         }
 
         //Após filtrar os resultados da busca, surge uma lista com os produtos que batem com os parametros dados.
