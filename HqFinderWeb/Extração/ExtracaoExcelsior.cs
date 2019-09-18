@@ -12,9 +12,14 @@ namespace HqFinderWeb.Extração
         {
             var list = FiltraResultados(driver, hq, resultados, getXpathResultados(), getXpathResultadoTitulo());
 
-            var listResultados = ExtrairResultados(list, driver, resultados, getXpathNodeLink(), getXpathNodePreco(), url, getXpathEditora(), hq);
+            var listResultados = ExtrairResultados(list, driver, resultados, getXpathNodeLink(), getXpathNodePreco(), url, getXpathEditora(), hq, getXpathDisponibilidade());
 
             return listResultados;
+        }
+
+        private string getXpathDisponibilidade()
+        {
+            return "//p[contains(text(),'Fora de estoque')]";
         }
 
         public string getXpathResultados()

@@ -70,7 +70,7 @@ namespace HqFinderWeb.Extração
 
         //Após filtrar os resultados da busca, surge uma lista com os produtos que batem com os parametros dados.
         //Ocorre a extração de cada dado dos produtos.
-        public List<Resultado> ExtrairResultados(List<HtmlNode> listaResultadosDesejados, ChromeDriver driver, List<Resultado> resultados, string xpathNodeLink, string xpathNodePreco, string url, string xpathNodeEditora, Quadrinho hq)
+        public List<Resultado> ExtrairResultados(List<HtmlNode> listaResultadosDesejados, ChromeDriver driver, List<Resultado> resultados, string xpathNodeLink, string xpathNodePreco, string url, string xpathNodeEditora, Quadrinho hq, string xpathNodeDisponibilidade)
         {
             Navega navegaResultado = new Navega();
 
@@ -89,15 +89,29 @@ namespace HqFinderWeb.Extração
 
                 if (filtraEditora(doc, resultado, xpathNodeEditora, hq))
                 {
-                    var nodePreço = doc.DocumentNode.SelectSingleNode(xpathNodePreco);
+                    if (verificarDisponibilidade(xpathNodeDisponibilidade, doc))
+                    {
+                        var nodePreço = doc.DocumentNode.SelectSingleNode(xpathNodePreco);
 
-                    resultado.preco = nodePreço.InnerText;
+                        resultado.preco = nodePreço.InnerText;
 
-                    resultados.Add(resultado);
+                        resultados.Add(resultado);
+                    }
                 }
             }
 
             return resultados;
+        }
+
+        private bool verificarDisponibilidade(string xpathNodeDisponibilidade, HtmlDocument doc)
+        {
+            var nodeDisponibilidade = doc.DocumentNode.SelectSingleNode(xpathNodeDisponibilidade);
+
+            if (nodeDisponibilidade == null)
+                return true;
+            else
+                return false;
+            
         }
 
         private bool filtraEditora(HtmlDocument doc, Resultado resultado, string xpathNodeEditora, Quadrinho hq)
