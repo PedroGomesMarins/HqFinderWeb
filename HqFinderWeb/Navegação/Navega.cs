@@ -17,7 +17,7 @@ namespace HqFinderWeb.Navegação
             chromeOptions.AddArguments("--headless", "--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36");
 
             //Inicializa e navega para o site.
-            return new ChromeDriver(chromeOptions);
+            return new ChromeDriver();
         }
 
         public ChromeDriver NavegaPaginaInicial(ChromeDriver driver, string url)
