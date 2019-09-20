@@ -115,12 +115,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Extração\Extracao.cs" />
+    <Compile Include="Extração\ExtracaoBancaGibi.cs" />
     <Compile Include="Extração\ExtracaoComix.cs" />
     <Compile Include="Extração\ExtracaoExcelsior.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Navegação\Navega.cs" />
+    <Compile Include="Navegação\NavegaBancaGibi.cs" />
     <Compile Include="Navegação\NavegaComix.cs" />
     <Compile Include="Navegação\NavegaExcelsior.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace HqFinderWeb.Extração
 {
-    public class ExtracaoExcelsior : Extracao
+    public class ExtracaoBancaGibi : Extracao
     {
         public List<Resultado> Extrai(ChromeDriver driver, Quadrinho hq, List<Resultado> resultados, string url)
         {
@@ -19,22 +19,22 @@ namespace HqFinderWeb.Extração
 
         private string getXpathNenhumResultadoEncontrado()
         {
-            return "//p/text()[contains(.,'Nenhum produto foi encontrado')]";
+            return "//div[@id='core']/text()[contains(.,'Nenhum produto encontrado')]";
         }
 
         private string getXpathDisponibilidade()
         {
-            return "//p[contains(text(),'Fora de estoque')]";
+            return "//div[contains(text(),'Fora de estoque')]";
         }
 
         public string getXpathResultados()
         {
-            return "//div[@id='search-rand']/div[@class='item']";
+            return "//li[@class='product']";
         }
 
         public string getXpathResultadoTitulo()
         {
-            return ".//div/span[1]/span";
+            return ".//a/following-sibling::div/a";
         }
 
         public string getXpathNodeLink()
@@ -44,12 +44,12 @@ namespace HqFinderWeb.Extração
 
         public string getXpathNodePreco()
         {
-            return "//span[@class='price']/span";
+            return "//span[@class='price']";
         }
 
         private string getXpathEditora()
         {
-            return "//th[descendant::span[contains(text(),'Editora')]]/following-sibling::td/a";
+            return "//div[@class='product_description']/br[3]/following-sibling::text()[1]";
         }
     }
 }

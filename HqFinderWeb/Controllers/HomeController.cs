@@ -35,10 +35,21 @@ namespace HqFinderWeb.Controllers
             navegaExcelsior(hq, resultadoExcelsior);
             resultados.AddRange(resultadoExcelsior);
 
+            //Navega e extrai as informações e retorna uma lista de quadrinhos desejados.
+            List<Resultado> resultadoBancaGibi = new List<Resultado>();
+            navegaBancaGibi(hq, resultadoBancaGibi);
+            resultados.AddRange(resultadoBancaGibi);
+
             ViewBag.Resultados = resultados;
             return View("resultados");
         }
- 
+
+        private void navegaBancaGibi(Quadrinho hq, List<Resultado> dadosBancaGibi)
+        {
+            NavegaBancaGibi excelsior = new NavegaBancaGibi();
+            dadosBancaGibi = excelsior.NavegaPesquisa(hq, dadosBancaGibi);
+        }
+
         private static void navegaExcelsior(Quadrinho hq, List<Resultado> dadosExcelsior)
         {
             NavegaExcelsior excelsior = new NavegaExcelsior();

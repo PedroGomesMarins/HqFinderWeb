@@ -11,7 +11,7 @@ namespace HqFinderWeb.Extração
 {
     public class Extracao
     {
-        public List<HtmlNode> FiltraResultados(ChromeDriver driver, Quadrinho hq, List<Resultado> resultados, string xpathResultados, string xpathResultadoTitulo)
+        public List<HtmlNode> FiltraResultados(ChromeDriver driver, Quadrinho hq, List<Resultado> resultados, string xpathResultados, string xpathResultadoTitulo, string xpathNenhumResultadoEncontrado)
         {
             //Tranforma o html do resultado em um formato mais facil de ser manipulado.
             var doc = new HtmlAgilityPack.HtmlDocument();
@@ -23,23 +23,36 @@ namespace HqFinderWeb.Extração
             //Encontra no html todos os nodes de cada resultado encontrado.
             var nodesResultados = doc.DocumentNode.SelectNodes(xpathResultados);
 
-            //Para cada um realiza a extração do titulo do produto.
-            foreach (var node in nodesResultados)
+            if (verificaResultadosEncontrados(doc, xpathNenhumResultadoEncontrado))
             {
-                var nodeNome = node.SelectSingleNode(xpathResultadoTitulo);
-
-                var nomeResultado = nodeNome.InnerText;
-
-                //Há a verificação se o produto em questão é o que se procura.
-                var verificaResultado = VerificarCompatibilidade(nomeResultado, hq);
-
-                if (verificaResultado)
+                //Para cada um realiza a extração do titulo do produto.
+                foreach (var node in nodesResultados)
                 {
-                    listaResultadosDesejados.Add(node);
+                    var nodeNome = node.SelectSingleNode(xpathResultadoTitulo);
+
+                    var nomeResultado = nodeNome.InnerText;
+
+                    //Há a verificação se o produto em questão é o que se procura.
+                    var verificaResultado = VerificarCompatibilidade(nomeResultado, hq);
+
+                    if (verificaResultado)
+                    {
+                        listaResultadosDesejados.Add(node);
+                    }
                 }
             }
 
             return listaResultadosDesejados;
+        }
+
+        private bool verificaResultadosEncontrados(HtmlDocument doc, string xpathNenhumResultadoEncontrado)
+        {
+            var node = doc.DocumentNode.SelectSingleNode(xpathNenhumResultadoEncontrado);
+
+            if (node == null)
+                return true;
+            else
+                return false;
         }
 
         //Para cada node(produto) que se encaixa no que se procura adiciona-se numa lista.

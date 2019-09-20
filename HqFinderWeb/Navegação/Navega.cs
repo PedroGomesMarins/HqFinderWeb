@@ -17,7 +17,7 @@ namespace HqFinderWeb.Navegação
             chromeOptions.AddArguments("--headless", "--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36");
 
             //Inicializa e navega para o site.
-            return new ChromeDriver();
+            return new ChromeDriver(chromeOptions);
         }
 
         public ChromeDriver NavegaPaginaInicial(ChromeDriver driver, string url)
@@ -43,7 +43,7 @@ namespace HqFinderWeb.Navegação
             return driver;
         }
 
-        public string MontaStringPesquisa(Quadrinho hq)
+        public virtual string MontaStringPesquisa(Quadrinho hq)
         {
             return String.Format(hq.nome + " " + hq.volume);
         }

@@ -10,11 +10,16 @@ namespace HqFinderWeb.Extração
     {
         public List<Resultado> Extrai(ChromeDriver driver, Quadrinho hq, List<Resultado> resultados, string url)
         {
-            var list = FiltraResultados(driver, hq, resultados, getXpathResultados(), getXpathResultadoTitulo());
+            var list = FiltraResultados(driver, hq, resultados, getXpathResultados(), getXpathResultadoTitulo(), getXpathNenhumResultadoEncontrado());
 
             var listResultados = ExtrairResultados(list, driver, resultados, getXpathNodeLink(), getXpathNodePreco(), url, getXpathEditora(), hq, getXpathDisponibilidade());
 
             return listResultados;
+        }
+
+        private string getXpathNenhumResultadoEncontrado()
+        {
+            return "//p[contains(text(),'Sua busca n')]";
         }
 
         private string getXpathDisponibilidade()
