@@ -1,6 +1,6 @@
 ﻿
 @{
-    
+    //Layout = null;
 }
 
 <!DOCTYPE html>
@@ -9,6 +9,7 @@
 <head>
     <link href="~/Content/Index.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Index</title>
 </head>
 <body>
@@ -17,16 +18,27 @@
 
             @using (Html.BeginForm("Post", "Home"))
             {
-                <label id="para1">Nome</label>
-                <input type="text" name="text_nome" value="" required="" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Preencha com o nome do quadrinho.')"/><br />
-
-                <label>Volume</label>
-                <input type="text" name="text_volume" value="" />
-
-                <label>Editora</label>
-                <input type="text" name="text_editora" value="" required="" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Preencha com a editora do quadrinho.')"/>
-
-                <input type="submit" value="Pesquisar" />
+                <table class="w3-table">
+                    <tr>
+                        <th>
+                            <label id="para1">Nome</label>
+                            <input class="w3-input w3-round" type="text" name="text_nome" value="" required="" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Preencha com o nome do quadrinho.')" /><br />
+                        </th>
+                        <th>
+                            <label>Volume</label>
+                            <input class="w3-input w3-round" type="text" name="text_volume" value="" />
+                        </th>
+                        <th>
+                            <label>Editora</label>
+                            <input class="w3-input w3-round" type="text" name="text_editora" value="" required="" oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Preencha com a editora do quadrinho.')" />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <input class="w3-btn w3-grey w3-round" type="submit" value="Pesquisar" />
+                        </th>
+                    </tr>
+                </table>
             }
 
         </section>
