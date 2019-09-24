@@ -40,8 +40,19 @@ namespace HqFinderWeb.Controllers
             navegaBancaGibi(hq, resultadoBancaGibi);
             resultados.AddRange(resultadoBancaGibi);
 
+            //Navega e extrai as informações e retorna uma lista de quadrinhos desejados.
+            List<Resultado> resultadoPanini = new List<Resultado>();
+            navegaPanini(hq, resultadoPanini);
+            resultados.AddRange(resultadoPanini);
+
             ViewBag.Resultados = resultados;
             return View("resultados");
+        }
+
+        private void navegaPanini(Quadrinho hq, List<Resultado> dadosPanini)
+        {
+            NavegaPanini excelsior = new NavegaPanini();
+            dadosPanini = excelsior.NavegaPesquisa(hq, dadosPanini);
         }
 
         private void navegaBancaGibi(Quadrinho hq, List<Resultado> dadosBancaGibi)
