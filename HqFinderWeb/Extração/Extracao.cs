@@ -58,9 +58,9 @@ namespace HqFinderWeb.Extração
         //Para cada node(produto) que se encaixa no que se procura adiciona-se numa lista.
         private Boolean VerificarCompatibilidade(string nomeResultado, Quadrinho hq)
         {
-            var patternNome = hq.nome.ToLower();
+            var patternNome = removerAcentos(hq.nome.ToLower());
             var patternVolume = hq.volume;
-            var input = nomeResultado.ToLower();
+            var input = removerAcentos(nomeResultado.ToLower());
 
             Match matchNome = Regex.Match(input, patternNome);
             Match matchVolume = Regex.Match(input, patternVolume);
@@ -79,6 +79,18 @@ namespace HqFinderWeb.Extração
                 else
                     return false;
             }
+        }
+
+        private string removerAcentos(string texto)
+        {
+            string comAcentos = "ÄÅÁÂÀÃäáâàãÉÊËÈéêëèÍÎÏÌíîïìÖÓÔÒÕöóôòõÜÚÛüúûùÇç";
+            string semAcentos = "AAAAAAaaaaaEEEEeeeeIIIIiiiiOOOOOoooooUUUuuuuCc";
+
+            for (int i = 0; i < comAcentos.Length; i++)
+            {
+                texto = texto.Replace(comAcentos[i].ToString(), semAcentos[i].ToString());
+            }
+            return texto;
         }
 
         //Após filtrar os resultados da busca, surge uma lista com os produtos que batem com os parametros dados.

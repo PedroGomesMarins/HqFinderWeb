@@ -49,7 +49,7 @@ namespace HqFinderWeb.Extração
 
         private string getXpathEditora()
         {
-            return "//div[@class='product_description']/br[3]/following-sibling::text()[1]";
+            return "//div[@class='product_description']/text()[contains(.,'Publicado')]/following-sibling::text()[1]";
         }
     }
 }

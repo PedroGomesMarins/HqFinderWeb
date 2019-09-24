@@ -44,9 +44,9 @@ namespace HqFinderWeb.Extração
 
         public string getXpathNodePreco()
         {
-            return ".//div/div/span/span";
+            return "//*[@class = 'regular-price' or @class = 'special-price']/span[@class='price']";
         }
-
+        
         private string getXpathEditora()
         {
             return "//th[contains(text(),'Fornecedor')]/following-sibling::td";
