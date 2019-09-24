@@ -1,7 +1,9 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using HtmlAgilityPack;
+using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace HqFinderWeb.Extração
@@ -50,6 +52,27 @@ namespace HqFinderWeb.Extração
         private string getXpathEditora()
         {
             return "//div[@class='product_description']/text()[contains(.,'Publicado')]/following-sibling::text()[1]";
+        }
+
+        override
+        public bool filtraEditora(HtmlDocument doc, Resultado resultado, string xpathNodeEditora, Quadrinho hq)
+        {
+            var editoraNode = doc.DocumentNode.SelectSingleNode(xpathNodeEditora);
+
+            if (editoraNode == null)
+                return true;
+
+            var editora = editoraNode.InnerText;
+
+            var patternNome = hq.editora.ToLower();
+            var input = editora.ToLower();
+
+            Match match = Regex.Match(input, patternNome);
+
+            if (match.Success)
+                return true;
+            else
+                return false;
         }
     }
 }

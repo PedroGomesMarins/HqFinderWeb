@@ -146,7 +146,7 @@ namespace HqFinderWeb.Extração
             
         }
 
-        private bool filtraEditora(HtmlDocument doc, Resultado resultado, string xpathNodeEditora, Quadrinho hq)
+        public virtual bool filtraEditora(HtmlDocument doc, Resultado resultado, string xpathNodeEditora, Quadrinho hq)
         {
             var editoraNode = doc.DocumentNode.SelectSingleNode(xpathNodeEditora);
 
