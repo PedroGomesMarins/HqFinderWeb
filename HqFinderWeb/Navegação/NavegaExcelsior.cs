@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace HqFinderWeb.Navegação
@@ -15,6 +16,8 @@ namespace HqFinderWeb.Navegação
             driver = NavegaPaginaInicial(driver, getUrl());
 
             driver = RealizaPesquisa(driver, hq, getXpathPesquisa(), getXpathBotao());
+
+            Thread.Sleep(2000);
 
             //Ao chegar no Html dos resultados, começa a extração dos dados.
             ExtracaoExcelsior extracao = new ExtracaoExcelsior();
