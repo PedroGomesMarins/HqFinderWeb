@@ -40,7 +40,7 @@ namespace HqFinderWeb.Navegação
 
         private string getUrl()
         {
-            return "https://www.bancadogibi.com.br/";
+            return "https://bancadogibi.loja2.com.br/";
         }
 
         public override string MontaStringPesquisa(Quadrinho hq)
